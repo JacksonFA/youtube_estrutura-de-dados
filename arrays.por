@@ -1,6 +1,6 @@
 programa {
   inclua biblioteca Util
-  
+
   funcao inicio() {
     caracter array1[] = { 'A', 'B' }
     cadeia array2[] = { "abc", "def" }
@@ -14,7 +14,7 @@ programa {
     escreva("Tamanho do array: ", tamanho_array)
     escreva("\n")
     para (inteiro i = 0; i < tamanho_array; i++) {
-      escreva("Posição ", i, ": ", array[i])
+      escreva("Posiï¿½ï¿½o ", i, ": ", array[i])
       escreva("\n")
     }
   }
