@@ -1,5 +1,5 @@
 programa {
-  logico x_ganhou, o_ganhou, fim_de_jogo = falso
+  logico x_ganhou, o_ganhou, fim_de_jogo, deu_velha = falso
   cadeia ganhador
   caracter velha[][] = {{' ',' ',' '}  
                        ,{' ',' ',' '}  
@@ -23,10 +23,21 @@ programa {
         pare
       }
 
+      se (deu_velha == verdadeiro) {
+        fim_de_jogo = verdadeiro
+        escreva("Deu velha!!!")
+        pare
+      }
+
       o_ganhou = vez_jogadorO()
       se (o_ganhou == verdadeiro) {
         fim_de_jogo = verdadeiro
         escreva("O jogador O foi o vencedor!!!")
+      }
+
+      se (deu_velha == verdadeiro) {
+        fim_de_jogo = verdadeiro
+        escreva("Deu velha!!!")
       }
     }
   }
@@ -114,30 +125,34 @@ programa {
 
   funcao logico verificar_velha_o() {
     // Linhas
-    logico jogadasY1 = velha[0][0] == 'Y' e velha[0][1] == 'Y' e  velha[0][2] == 'Y'
-    logico jogadasY2 = velha[1][0] == 'Y' e velha[1][1] == 'Y' e  velha[1][2] == 'Y'
-    logico jogadasY3 = velha[2][0] == 'Y' e velha[2][1] == 'Y' e  velha[2][2] == 'Y'
+    logico jogadasO1 = velha[0][0] == 'O' e velha[0][1] == 'O' e  velha[0][2] == 'O'
+    logico jogadasO2 = velha[1][0] == 'O' e velha[1][1] == 'O' e  velha[1][2] == 'O'
+    logico jogadasO3 = velha[2][0] == 'O' e velha[2][1] == 'O' e  velha[2][2] == 'O'
 
     // Diagonais
-    logico jogadasY4 = velha[0][0] == 'Y' e velha[1][1] == 'Y' e  velha[2][2] == 'Y'
-    logico jogadasY5 = velha[0][2] == 'Y' e velha[1][1] == 'Y' e  velha[2][0] == 'Y'
+    logico jogadasO4 = velha[0][0] == 'O' e velha[1][1] == 'O' e  velha[2][2] == 'O'
+    logico jogadasO5 = velha[0][2] == 'O' e velha[1][1] == 'O' e  velha[2][0] == 'O'
 
     // Colunas
-    logico jogadasY6 = velha[0][0] == 'Y' e velha[1][0] == 'Y' e  velha[2][0] == 'Y'
-    logico jogadasY7 = velha[0][1] == 'Y' e velha[1][1] == 'Y' e  velha[2][1] == 'Y'
-    logico jogadasY8 = velha[0][2] == 'Y' e velha[1][2] == 'Y' e  velha[2][2] == 'Y'
+    logico jogadasO6 = velha[0][0] == 'O' e velha[1][0] == 'O' e  velha[2][0] == 'O'
+    logico jogadasO7 = velha[0][1] == 'O' e velha[1][1] == 'O' e  velha[2][1] == 'O'
+    logico jogadasO8 = velha[0][2] == 'O' e velha[1][2] == 'O' e  velha[2][2] == 'O'
 
-    const logico ganhou_y = jogadasY1 ou jogadasY2 ou jogadasY3 ou jogadasY4 ou jogadasY5 ou jogadasY6 ou jogadasY7 ou jogadasY8
-    retorne ganhou_y
+    const logico ganhou_o = jogadasO1 ou jogadasO2 ou jogadasO3 ou jogadasO4 ou jogadasO5 ou jogadasO6 ou jogadasO7 ou jogadasO8
+    retorne ganhou_o
   }
 
   funcao mostrar_velha() {
+    logico total_preenchida = verdadeiro
     escreva("\n")
     para (inteiro i = 0; i < 3; i++) {
       para (inteiro j = 0; j < 3; j++) {
         escreva(velha[i][j])
         se (j < 2) {
           escreva(" | ")
+        }
+        se (velha[i][j] == ' ') {
+          total_preenchida = falso
         }
       }
       se (i < 2) {
@@ -148,5 +163,8 @@ programa {
     }
     escreva("\n")
     escreva("\n")
+    se (total_preenchida == verdadeiro) {
+      deu_velha = verdadeiro
+    }
   }
 }
