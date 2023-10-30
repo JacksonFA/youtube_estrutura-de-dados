@@ -1,6 +1,6 @@
 programa {
   logico x_ganhou, o_ganhou, fim_de_jogo, deu_velha = falso
-  cadeia ganhador
+  // cadeia ganhador
   caracter velha[][] = {{' ',' ',' '}  
                        ,{' ',' ',' '}  
                        ,{' ',' ',' '}}
